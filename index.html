@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Nemadandila Vhugala, a passionate web developer specializing in responsive and user-friendly websites.">
+    <title>Nemadandila Vhugala - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 5s infinite;
+            z-index: -1;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #ecf0f1;
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .tagline {
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #ecf0f1;
+            animation: typing 3s steps(30, end) forwards, blink 0.5s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #ecf0f1; }
+        }
+        nav {
+            position: relative;
+            z-index: 2;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        nav ul li a i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        nav ul li a:hover i {
+            transform: scale(1.2);
+        }
+        nav ul li a.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .skill-item {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: scale(1.1);
+        }
+        .social-icon {
+            color: #3498db;
+            margin-right: 10px;
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        .project {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .project h3 {
+            color: #2c3e50;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        .certificate-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .certificate-card h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .certificate-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #1565c0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #0d47a1;
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin-bottom: 1rem;
+            }
+            nav ul li a {
+                display: block;
+                padding: 0.5rem 1rem;
+            }
+            nav ul li a.active {
+                border-left: 4px solid #3498db;
+                padding-left: 0.5rem;
+            }
+            .certificates-container {
+                grid-template-columns: 1fr;
+            }
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header role="banner">
+        <img src="IMG-20230724-WA0048.jpg" alt="Nemadandila Vhugala" class="profile-img">
+        <h1>Nemadandila Vhugala</h1>
+        <p class="tagline">Cybersecurity Enthusiast</p>
+        <nav role="navigation">
+            <ul>
+                <li><a href="#about"><i class="fas fa-user"></i> About Me</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#certificates"><i class="fas fa-certificate"></i> Certificates</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section id="about" class="section" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Me</h2>
+            <p>Hello! I'm Nemadandila Vhugala, a computer science student with a growing passion for cybersecurity. My studies provide a strong foundation for understanding the complexities of digital systems, and I'm particularly interested in applying this knowledge to building more secure environments. Eager to learn and contribute to the cybersecurity field, I am committed to developing the skills necessary to tackle evolving online threats.</p>
+        </section>
+
+        <section id="skills" class="section" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">Skills</h2>
+            <div class="skills-list">
+                <span class="skill-item"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span class="skill-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="skill-item"><i class="fas fa-mobile-alt"></i> Responsive Web Design</span>
+                <span class="skill-item"><i class="fab fa-java"></i> Java</span>
+                <span class="skill-item"><i class="fas fa-code"></i> C++</span>
+                <span class="skill-item"><i class="fas fa-tasks"></i> Project Management</span>
+                <span class="skill-item"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-item"><i class="fas fa-shield-alt"></i> Risk Management and Incident Handling</span>
+            </div>
+        </section>
+
+        <section id="education" class="section" aria-labelledby="education-heading">
+            <h2 id="education-heading">Education</h2>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>University of Venda, 2023</p>
+            <p>Relevant coursework: Software Engineering, Programming, Networking, Database Management, Artificial Intelligence, Algorithms and Data Structures</p>
+        </section>
+
+        <section id="certificates" class="section" aria-labelledby="certificates-heading">
+            <h2 id="certificates-heading">Certificates</h2>
+            <div class="certificates-container">
+                <div class="certificate-card">
+                    <h3>Introduction to Cybersecurity Certificate</h3>
+                    <p>Cisco Network Academy Certification</p>
+                    <a href="certificates/Introduction_to_Cybersecurity_Certificate.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="certificate-card">
+                    <h3>Networking Devices and Initial Configuration Certificate</h3>
+                    <p>Cisco Network Academy Certification</p>
+                    <a href="certificates/Networking_Devices_and_Initial_Configuration_Certificate.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="certificate-card">
+                    <h3>Networking Basics Certificate</h3>
+                    <p>Cisco Network Academy Certification</p>
+                    <a href="certificates/Networking_Basics_Certificate.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="certificate-card">
+                    <h3>EndPoint Security Certificate</h3>
+                    <p>Cisco Network Academy Certification</p>
+                    <a href="certificates/EndPoint_Security_Certificate.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact</h2>
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:vhugalapianist@gmail.com">vhugalapianist@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> Phone: <a href="tel:+27765626537">+27 76 562 6537</a></p>
+            <div class="social-media">
+                <a href="https://www.linkedin.com/in/vhugala-nemadandila-538988278/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/23001032" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://wa.me/+27765626537" target="_blank" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://web.facebook.com/vhugala.nemadi" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>© 2025 Nemadandila Vhugala. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+
+            // Observer for adding 'visible' class
+            const visibleObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        visibleObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observer for highlighting active navigation link
+            let sectionRatios = {};
+            sections.forEach(section => {
+                sectionRatios[section.id] = 0;
+            });
+
+            const activeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    sectionRatios[entry.target.id] = entry.isIntersecting ? entry.intersectionRatio : 0;
+                });
+
+                let maxRatio = 0;
+                let activeSection = null;
+                for (let sectionId in sectionRatios) {
+                    if (sectionRatios[sectionId] > maxRatio) {
+                        maxRatio = sectionRatios[sectionId];
+                        activeSection = sectionId;
+                    }
+                }
+
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                if (activeSection && maxRatio > 0) {
+                    const activeLink = document.querySelector(`nav ul li a[href="#${activeSection}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+
+            sections.forEach(section => {
+                visibleObserver.observe(section);
+                activeObserver.observe(section);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const sectionId = targetId.substring(1);
+                        const targetSection = document.getElementById(sectionId);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
